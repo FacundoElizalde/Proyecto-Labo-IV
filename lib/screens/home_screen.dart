@@ -28,10 +28,8 @@ class HomeScreen extends StatelessWidget {
       synopsis:
           'A thief who enters the dreams of others to steal their secrets.',
       imageUrl:
-          'https://mario.nintendo.com/static/f350c31adcd6378b913f7660db299714/7e15c/mario.png', // Asegúrate de que esta URL sea válida
+          'https://mario.nintendo.com/static/f350c31adcd6378b913f7660db299714/7e15c/mario.png',
     ),
-
-    // ... Agrega más películas según sea necesario
   ];
 
   @override
@@ -49,8 +47,6 @@ class HomeScreen extends StatelessWidget {
             title: Text(movies[index].title),
             subtitle: Text('${movies[index].director} (${movies[index].year})'),
             onTap: () {
-              // Implementa la lógica cuando se selecciona una película
-              // Puedes navegar a una pantalla de detalles, por ejemplo
               _showMovieDetails(context, movies[index]);
             },
           );
@@ -67,8 +63,6 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _showMovieDetails(BuildContext context, Movie movie) {
-    // Implementa la lógica para mostrar los detalles de la película
-    // Puedes abrir una nueva pantalla o mostrar un cuadro de diálogo, por ejemplo
     showDialog(
       context: context,
       builder: (context) {
