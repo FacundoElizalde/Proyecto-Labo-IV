@@ -10,21 +10,26 @@ class Movie {
     required this.title,
     required this.director,
     required this.year,
+    required String releaseDate,
+    required String synopsis,
+    required String imageUrl,
   });
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   final List<Movie> movies = [
     Movie(
-  title: 'Inception',
-  director: 'Christopher Nolan',
-  year: 2010,
-  releaseDate: 'July 16, 2010',
-  synopsis: 'A thief who enters the dreams of others to steal their secrets.',
-  imageUrl: 'https://mario.nintendo.com/static/f350c31adcd6378b913f7660db299714/7e15c/mario.png', // Asegúrate de que esta URL sea válida
-),
+      title: 'Inception',
+      director: 'Christopher Nolan',
+      year: 2010,
+      releaseDate: 'July 16, 2010',
+      synopsis:
+          'A thief who enters the dreams of others to steal their secrets.',
+      imageUrl:
+          'https://mario.nintendo.com/static/f350c31adcd6378b913f7660db299714/7e15c/mario.png', // Asegúrate de que esta URL sea válida
+    ),
 
     // ... Agrega más películas según sea necesario
   ];
