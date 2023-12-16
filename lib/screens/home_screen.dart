@@ -5,14 +5,17 @@ class Movie {
   final String title;
   final String director;
   final int year;
+  final String releaseDate;
+  final String synopsis;
+  final String imageUrl;
 
   Movie({
     required this.title,
     required this.director,
     required this.year,
-    required String releaseDate,
-    required String synopsis,
-    required String imageUrl,
+    required this.releaseDate,
+    required this.synopsis,
+    required this.imageUrl,
   });
 }
 
@@ -24,21 +27,93 @@ class HomeScreen extends StatelessWidget {
       title: 'Inception',
       director: 'Christopher Nolan',
       year: 2010,
-      releaseDate: 'July 16, 2010',
+      releaseDate: '16 de julio de 2010',
       synopsis:
-          'A thief who enters the dreams of others to steal their secrets.',
+          'Un ladrón que entra en los sueños de otros para robar sus secretos.',
       imageUrl:
-          'https://mario.nintendo.com/static/f350c31adcd6378b913f7660db299714/7e15c/mario.png', // Asegúrate de que esta URL sea válida
+          'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg',
     ),
-
-    // ... Agrega más películas según sea necesario
+    Movie(
+      title: 'Cadena perpetua',
+      director: 'Frank Darabont',
+      year: 1994,
+      releaseDate: '23 de septiembre de 1994',
+      synopsis:
+          'Dos hombres encarcelados establecen un vínculo a lo largo de varios años, encontrando consuelo y redención eventual a través de actos de decencia común.',
+      imageUrl: '',
+    ),
+    Movie(
+      title: 'El caballero de la noche',
+      director: 'Christopher Nolan',
+      year: 2008,
+      releaseDate: '18 de julio de 2008',
+      synopsis:
+          'Cuando surge la amenaza conocida como el Joker, Batman debe enfrentarlo para hacer justicia.',
+      imageUrl: '',
+    ),
+    Movie(
+      title: 'Pulp Fiction',
+      director: 'Quentin Tarantino',
+      year: 1994,
+      releaseDate: '21 de mayo de 1994',
+      synopsis:
+          'Las vidas de dos sicarios, un boxeador, un gánster y su esposa, y un par de bandidos de un restaurante se entrelazan en cuatro relatos de violencia y redención.',
+      imageUrl: '',
+    ),
+    // Agrega más películas según sea necesario
+    Movie(
+      title: 'El Padrino',
+      director: 'Francis Ford Coppola',
+      year: 1972,
+      releaseDate: '24 de marzo de 1972',
+      synopsis:
+          'El patriarca envejecido de una dinastía del crimen organizado transfiere el control de su imperio clandestino a su renuente hijo.',
+      imageUrl: '',
+    ),
+    Movie(
+      title: 'Forrest Gump',
+      director: 'Robert Zemeckis',
+      year: 1994,
+      releaseDate: '6 de julio de 1994',
+      synopsis:
+          'Las presidencias de Kennedy y Johnson, los eventos de Vietnam, Watergate y otras historias se desarrollan desde la perspectiva de un hombre de Alabama con un coeficiente intelectual de 75.',
+      imageUrl: '',
+    ),
+    Movie(
+      title: 'Matrix',
+      director: 'The Wachowskis',
+      year: 1999,
+      releaseDate: '31 de marzo de 1999',
+      synopsis:
+          'Un hacker informático descubre la verdadera naturaleza de su realidad y su papel en la guerra contra sus controladores.',
+      imageUrl: '',
+    ),
+    Movie(
+      title: 'La lista de Schindler',
+      director: 'Steven Spielberg',
+      year: 1993,
+      releaseDate: '15 de diciembre de 1993',
+      synopsis:
+          'En la Polonia ocupada por los alemanes durante la Segunda Guerra Mundial, el industrial Oskar Schindler se preocupa gradualmente por su fuerza laboral judía después de presenciar su persecución por parte de los nazis.',
+      imageUrl: '',
+    ),
+    // Agrega más películas según sea necesario
+    Movie(
+      title: 'El club de la pelea',
+      director: 'David Fincher',
+      year: 1999,
+      releaseDate: '15 de octubre de 1999',
+      synopsis:
+          'Un trabajador de oficina insomne y un fabricante de jabón sin preocupaciones forman un club de lucha clandestino que evoluciona hacia algo mucho más.',
+      imageUrl: '',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Inicio'),
         centerTitle: true,
       ),
       drawer: DrawerMenu(),
@@ -49,8 +124,6 @@ class HomeScreen extends StatelessWidget {
             title: Text(movies[index].title),
             subtitle: Text('${movies[index].director} (${movies[index].year})'),
             onTap: () {
-              // Implementa la lógica cuando se selecciona una película
-              // Puedes navegar a una pantalla de detalles, por ejemplo
               _showMovieDetails(context, movies[index]);
             },
           );
@@ -67,8 +140,6 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _showMovieDetails(BuildContext context, Movie movie) {
-    // Implementa la lógica para mostrar los detalles de la película
-    // Puedes abrir una nueva pantalla o mostrar un cuadro de diálogo, por ejemplo
     showDialog(
       context: context,
       builder: (context) {
@@ -79,7 +150,18 @@ class HomeScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text('Director: ${movie.director}'),
-              Text('Year: ${movie.year}'),
+              Text('Año: ${movie.year}'),
+              Text('Sinopsis: ${movie.synopsis}'),
+              Text(),
+              SizedBox(
+                height: 8,
+              ),
+              Center(
+                child: Image.network(
+                  movie.imageUrl,
+                  height: 200,
+                ),
+              ),
             ],
           ),
           actions: [
@@ -87,7 +169,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Close'),
+              child: Text('Cerrar'),
             ),
           ],
         );
