@@ -34,16 +34,13 @@ class DrawerMenu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.red,
+          DrawerHeader(
+            decoration: const BoxDecoration(
+              color: Colors.blue,
             ),
-            child: Text(
-              'Encabezado Aquí',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
+            child: Image.network(
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHIJiMv-gjUZSEjy4KmItsOTgscCOctneo7Q&usqp=CAU',
+              fit: BoxFit.cover,
             ),
           ),
           ...ListTile.divideTiles(
