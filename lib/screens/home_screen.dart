@@ -60,7 +60,6 @@ class HomeScreen extends StatelessWidget {
           'Las vidas de dos sicarios, un boxeador, un gánster y su esposa, y un par de bandidos de un restaurante se entrelazan en cuatro relatos de violencia y redención.',
       imageUrl: '',
     ),
-    // Agrega más películas según sea necesario
     Movie(
       title: 'El Padrino',
       director: 'Francis Ford Coppola',
@@ -97,7 +96,6 @@ class HomeScreen extends StatelessWidget {
           'En la Polonia ocupada por los alemanes durante la Segunda Guerra Mundial, el industrial Oskar Schindler se preocupa gradualmente por su fuerza laboral judía después de presenciar su persecución por parte de los nazis.',
       imageUrl: '',
     ),
-    // Agrega más películas según sea necesario
     Movie(
       title: 'El club de la pelea',
       director: 'David Fincher',
@@ -107,14 +105,25 @@ class HomeScreen extends StatelessWidget {
           'Un trabajador de oficina insomne y un fabricante de jabón sin preocupaciones forman un club de lucha clandestino que evoluciona hacia algo mucho más.',
       imageUrl: '',
     ),
+    Movie(
+      title: 'Los Juegos del Hambre: Balada de Pajaros Cantores y Serpientes',
+      director: 'Francis Lawrence',
+      year: 2023,
+      releaseDate: '16 de Noviembre de 2023',
+      synopsis:
+          'Años antes de convertirse en el tiránico presidente de Panem, Coriolanus Snow, de 18 años de edad, ve una oportunidad para un cambio de suerte cuando es mentor de Lucy Gray Baird, la tributo del Distrito 12.',
+      imageUrl:
+          'https://archivos-cms.cinecolombia.com/images/5/6/2/2/42265-7-esl-CO/f74b830866e0-2_poster_480x670.png',
+    )
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Inicio'),
+        title: const Text('TOP Peliculas'),
         centerTitle: true,
+        backgroundColor: (Colors.red),
       ),
       drawer: DrawerMenu(),
       body: ListView.builder(
@@ -152,8 +161,7 @@ class HomeScreen extends StatelessWidget {
               Text('Director: ${movie.director}'),
               Text('Año: ${movie.year}'),
               Text('Sinopsis: ${movie.synopsis}'),
-              Text(),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Center(

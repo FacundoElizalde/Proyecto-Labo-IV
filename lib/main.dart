@@ -3,7 +3,6 @@ import 'package:flutter_repo_guide/helpers/preferences.dart';
 import 'package:flutter_repo_guide/providers/theme_provider.dart';
 import 'package:flutter_repo_guide/screens/pageview_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'screens/screens.dart';
 
 void main() async {
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Demo',
+      title: 'Mis Peliculas',
       // theme: Preferences.darkmode ? ThemeData.dark() : ThemeData.light(),
       theme: Provider.of<ThemeProvider>(context, listen: true).temaActual,
       debugShowCheckedModeBanner: false,
