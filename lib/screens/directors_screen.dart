@@ -82,7 +82,7 @@ class DirectorsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Directores'),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.red[900],
       ),
       drawer: DrawerMenu(),
       body: ListView.builder(

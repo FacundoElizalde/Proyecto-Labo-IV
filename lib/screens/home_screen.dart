@@ -40,7 +40,7 @@ class MovieDetailScreen extends StatelessWidget {
         children: [
           // Primera página
           Container(
-            color: Colors.red[900],
+            color: Colors.white,
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -226,7 +226,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('TOP Peliculas'),
         centerTitle: true,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.red[900],
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
