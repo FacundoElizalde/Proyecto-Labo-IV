@@ -9,21 +9,47 @@ class DrawerMenu extends StatelessWidget {
     {'route': 'form_screen', 'title': 'Registrarse', 'subtitle': ''},
   ];
 
-  DrawerMenu({super.key});
+  DrawerMenu({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.blue,
+              image: DecorationImage(
+                image: NetworkImage(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHIJiMv-gjUZSEjy4KmItsOTgscCOctneo7Q&usqp=CAU',
+                ),
+                fit: BoxFit.cover,
+              ),
             ),
-            child: Image.network(
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHIJiMv-gjUZSEjy4KmItsOTgscCOctneo7Q&usqp=CAU',
-              fit: BoxFit.cover,
+            child: Stack(
+              children: [
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'TOP Peliculas',
+                    style: TextStyle(
+                      color: Colors.red[900],
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: 2, // Altura de la línea roja
+                  child: Container(
+                    color: Colors.red[900],
+                  ),
+                ),
+              ],
             ),
           ),
           ...ListTile.divideTiles(
@@ -31,15 +57,24 @@ class DrawerMenu extends StatelessWidget {
             tiles: _menuItems
                 .map((item) => ListTile(
                       contentPadding: const EdgeInsets.symmetric(
-                          vertical: 0, horizontal: 10),
+                          vertical: 10, horizontal: 16),
                       dense: true,
                       minLeadingWidth: 25,
-                      iconColor: Colors.blueGrey,
-                      title: Text(item['title']!,
-                          style: const TextStyle(fontFamily: 'FuzzyBubbles')),
-                      subtitle: Text(item['subtitle'] ?? '',
-                          style: const TextStyle(
-                              fontFamily: 'RobotoMono', fontSize: 11)),
+                      title: Text(
+                        item['title']!,
+                        style: TextStyle(
+                          fontFamily: 'FuzzyBubbles',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      subtitle: Text(
+                        item['subtitle'] ?? '',
+                        style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 12,
+                        ),
+                      ),
                       leading: const Icon(Icons.arrow_right),
                       onTap: () {
                         Navigator.pop(context);
