@@ -3,7 +3,7 @@ import 'package:flutter_repo_guide/helpers/preferences.dart';
 import 'package:flutter_repo_guide/providers/theme_provider.dart';
 import 'package:flutter_repo_guide/screens/directors_screen.dart';
 import 'package:flutter_repo_guide/screens/genres_screen.dart';
-import 'package:flutter_repo_guide/screens/pageview_screen.dart';
+// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
 import 'screens/screens.dart';
 
@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home': (context) => HomeScreen(),
-        'directors' : (context) => DirectorsPage(),
-        'genres' : (context) => GenreScreen(),
+        'directors': (context) => DirectorsPage(),
+        'genres': (context) => GenreScreen(),
         'profile': (context) => const ProfileScreen(),
         'form_screen': (context) => const FormScreen(),
       },
