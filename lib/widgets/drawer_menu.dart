@@ -17,7 +17,7 @@ class DrawerMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.blue,
               image: DecorationImage(
                 image: NetworkImage(

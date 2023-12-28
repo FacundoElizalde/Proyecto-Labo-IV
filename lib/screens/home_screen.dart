@@ -40,7 +40,7 @@ class MovieDetailScreen extends StatelessWidget {
         children: [
           // Primera página
           Container(
-            color: Colors.red,
+            color: Colors.red[900],
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
