@@ -58,7 +58,7 @@ class InputsForm extends StatelessWidget {
         //return EvaluateInput(value,inputName,type)
         if(inputName == 'dni' && int.tryParse(value)==null ) return 'solo numeros';
         if(inputName == 'email' && !isEmail(value) ) return 'email inválido';
-        return value.length < 2 ? 'Mínimo de 3 caracteres' : null;
+        return value.length < 6 ? 'Mínimo de 6 caracteres' : null;
       },
     );
   }

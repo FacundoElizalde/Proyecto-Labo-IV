@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_repo_guide/helpers/preferences.dart';
 import 'package:flutter_repo_guide/providers/theme_provider.dart';
+import 'package:flutter_repo_guide/screens/directors_screen.dart';
+import 'package:flutter_repo_guide/screens/genres_screen.dart';
 import 'package:flutter_repo_guide/screens/pageview_screen.dart';
 import 'package:provider/provider.dart';
 import 'screens/screens.dart';
@@ -31,25 +33,10 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home': (context) => HomeScreen(),
-        'counter': (context) => const CounterPage(),
-        'listview': (context) => const ListViewScreen(),
-        'listview1': (context) => const ListBuilderScreen(),
-        'listview2': (context) => ListBuilderScreen2(),
-        'flexbox': (context) => const FlexScreenColumn(),
-        'animated': (context) => const ContainerPage(),
-        'qr_code': (context) => const QrScannerScreen(),
-        'swipper': (context) => const CardSwiperScreen(),
-        'slivers': (context) => const SliversScreen(),
+        'directors' : (context) => DirectorsPage(),
+        'genres' : (context) => GenreScreen(),
         'profile': (context) => const ProfileScreen(),
-        'alert': (context) => const AlertScreen(),
-        'provider': (context) => const DemoProviderScreen(),
-        'photo_provider': (context) => const PhotosScreen(),
-        'pageview': (context) => PageViewScreen(),
-        'infinite_scroll': (context) => const InfiniteScrollScreen(),
-        'future_builder1': (context) => FutureBuilderScreen(),
-        'future_builder2': (context) => FuturePhotoScreen(),
         'form_screen': (context) => const FormScreen(),
-        'fingerprint_screen': (context) => const FingerPrintScreen(),
       },
     );
   }

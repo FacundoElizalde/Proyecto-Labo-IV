@@ -6,8 +6,8 @@ class Preferences{
 
   static String _email = '';
   static String _nombre = '';  
-  static String _dni = '';  
-  static String _genero = '';  
+  static String _dni = '';
+  static String _password = '';
   static bool _darkmode = false;
 
 
@@ -17,8 +17,6 @@ class Preferences{
   static Future<void> initShared() async {
     _prefs = await SharedPreferences.getInstance();     
   }
-
-
   static String get email{
     return _prefs.getString('email') ?? _email;
   }
@@ -31,8 +29,8 @@ class Preferences{
   static bool get darkmode{
     return _prefs.getBool('darkmode') ?? _darkmode;
   }
-  static String get genero{
-    return _prefs.getString('genero') ?? _genero;
+  static String get password{
+    return _prefs.getString('password') ?? _password;
   }
 
   static set email(String value){
@@ -47,14 +45,12 @@ class Preferences{
     _dni = value;
     _prefs.setString('dni', value);
   }
-  static set darkmode(bool value){    
+  static set darkmode(bool value) {
     _darkmode = value;
     _prefs.setBool('darkmode', value);
   }
-  static set genero(String value){    
-    _genero = value;
-    _prefs.setString('genero', value).then((value) => null);  
+  static set password(String value){
+    _password = value;
+    _prefs.setString('password', value);
   }
-
-
 }

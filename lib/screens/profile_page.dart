@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class ProfileScreen extends StatelessWidget {
    
   const ProfileScreen({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
 
@@ -15,13 +15,13 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar:AppBar(
          centerTitle:true,
-         title: const Text('ProfileScreen'),
+         title: const Text('Login'),
          elevation:10,
       ),
       body: SingleChildScrollView(
         child: Column(
            children: [
-            HeaderProfile(size: size),          
+            HeaderProfile(size: size),
             const Padding(
               padding: EdgeInsets.all(15.0),
               child: BodyProfile(),
@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class BodyProfile extends StatefulWidget {  
+class BodyProfile extends StatefulWidget {
 
   const BodyProfile({
     Key? key,
@@ -47,84 +47,88 @@ class _BodyProfileState extends State<BodyProfile> {
   bool darkMode = false;
 
   @override
-  Widget build(BuildContext context) {    
-    final temaProvider = Provider.of<ThemeProvider>(context, listen:false);    
+  Widget build(BuildContext context) {
+    final temaProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Column(
-            children: [
-              TextFormField(
-                onChanged: (value) {                  
-                  Preferences.email = value;
-                },
-                initialValue: Preferences.email,
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 197, 97, 97),
-                ),                       
-                keyboardType: TextInputType.emailAddress,
-                decoration: decorationInputs(
-                  icon:Icons.email, 
-                  hintText: 'TExto de prueba',
-                  helperText: 'Ej:name@dominio.com'
-                ),
-              ),
-              const SizedBox(height: 10,),
-              TextFormField(     
-                onChanged: (value) {                  
-                  Preferences.nombre = value;
-                },
-                initialValue: Preferences.nombre,
-                keyboardType: TextInputType.text,
-                decoration: decorationInputs(label: 'Nickname'),
-              ),
-              const SizedBox(height: 10,),
-              TextFormField(     
-                onChanged: (value) {                  
-                  Preferences.dni = value;
-                },
-                initialValue: Preferences.dni,
-                keyboardType: TextInputType.number,
-                decoration: decorationInputs(label: 'DNI'),
-              ),
-              const SizedBox(height: 15,),   
-              SwitchListTile.adaptive(
-                title: const Text('Dark Mode'),
-                value: Preferences.darkmode, 
-                onChanged: (bool value) {                                    
-                  setState(() {
-                    Preferences.darkmode = value;
-                    (value) ? temaProvider.setDark() : temaProvider.setLight();
+      children: [
+        TextFormField(
+          onChanged: (value) {
+            Preferences.email = value;
+          },
+          initialValue: Preferences.email,
+          style: const TextStyle(
+            color: Color.fromARGB(255, 197, 97, 97),
+          ),
+          keyboardType: TextInputType.emailAddress,
+          decoration: decorationInputs(
+            icon: Icons.email,
+            hintText: 'Usuario',
+            helperText: 'Ej:name@dominio.com',
+          ),
+        ),
+        const SizedBox(height: 15,),
+        TextFormField(
+          onChanged: (value) {
+            Preferences.password = value;
+          },
+          initialValue: Preferences.password,
+          obscureText: true,
+          keyboardType: TextInputType.visiblePassword,
+          decoration: decorationInputs(label: 'Password'),
+        ),
+        const SizedBox(height: 15,),
 
-                  });
-                },
-              ),                           
-            ],
-          );
+        SwitchListTile.adaptive(
+          title: const Text('Dark Mode'),
+          value: Preferences.darkmode,
+          onChanged: (bool value) {
+            setState(() {
+              Preferences.darkmode = value;
+              (value) ? temaProvider.setDark() : temaProvider.setLight();
+            });
+          },
+        ),
+        const SizedBox(height: 30,),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+          ),
+          child: const SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: Center(child: const Text('Ingresar')),
+          ),
+          onPressed: () {},
+        ),
+      ],
+    );
   }
 
   InputDecoration decorationInputs({IconData? icon, String? hintText, String? helperText, String? label}) {
-    return InputDecoration(         
+    return InputDecoration(
           fillColor: Colors.black,
           label: Text(label ?? ''),
-          hintText: hintText,      
+          hintText: hintText,
           helperStyle: const TextStyle(
             color: Colors.black
-          ),      
-          helperText: helperText,                          
+          ),
+          helperText: helperText,
           prefixIcon: (icon != null) ? Icon(icon):null,
           border: const UnderlineInputBorder(
             borderSide: BorderSide(
-              width: 1, 
+              width: 1,
               color: Color(0xff2d3e4f)
             )
           ),
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
-              width: 3, 
+              width: 3,
               color: Color(0xff2d3e4f)
             )
           ),
           enabledBorder:const UnderlineInputBorder(
             borderSide: BorderSide(
-              width: 2, 
+              width: 2,
               color: Color(0xff2d3e4f)
             )
           ),
