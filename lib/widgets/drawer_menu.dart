@@ -3,10 +3,22 @@ import 'package:flutter/material.dart';
 class DrawerMenu extends StatelessWidget {
   final List<Map<String, String>> _menuItems = <Map<String, String>>[
     {'route': 'home', 'title': 'Home', 'subtitle': 'Peliculas mas solicitadas'},
-    {'route': 'directors', 'title': 'Directores', 'subtitle': ''},
-    {'route': 'genres', 'title': 'Generos', 'subtitle': ''},
-    {'route': 'profile', 'title': 'Login', 'subtitle': ''},
-    {'route': 'form_screen', 'title': 'Registrarse', 'subtitle': ''},
+    {
+      'route': 'directors',
+      'title': 'Directores',
+      'subtitle': 'Apartado exclusivo para directores'
+    },
+    {
+      'route': 'genres',
+      'title': 'Generos',
+      'subtitle': 'Lista con generos cinematograficos'
+    },
+    {'route': 'profile', 'title': 'Login', 'subtitle': 'Logeate con tu cuenta'},
+    {
+      'route': 'form_screen',
+      'title': 'Registrarse',
+      'subtitle': 'Registrate en la plataforma'
+    },
   ];
 
   DrawerMenu({Key? key});
@@ -62,7 +74,7 @@ class DrawerMenu extends StatelessWidget {
                       minLeadingWidth: 25,
                       title: Text(
                         item['title']!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'FuzzyBubbles',
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
