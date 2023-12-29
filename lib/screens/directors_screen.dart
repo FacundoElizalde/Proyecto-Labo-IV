@@ -74,6 +74,64 @@ class DirectorsPage extends StatelessWidget {
         ('La lista de Schindler (1993): Poderoso retrato del Holocausto, destacando la humanidad en la oscuridad, ganadora de siete premios Oscar, incluido Mejor Director.'),
       ],
     ),
+Director(
+    lastName: 'Anderson',
+    firstName: 'Paul Thomas',
+    biography:
+        'Paul Thomas Anderson, born on June 26, 1970, is an American filmmaker known for his unique storytelling and visually stunning films. With movies like "There Will Be Blood" and "Boogie Nights," Anderson has established himself as a masterful director in contemporary cinema.',
+    notableMovies: [
+      ('There Will Be Blood (2007): A gripping drama exploring the dark side of ambition and greed, featuring an outstanding performance by Daniel Day-Lewis.'),
+      ('Boogie Nights (1997): An epic tale of the porn industry in the '70s and '80s, showcasing Anderson\'s storytelling prowess.'),
+      ('Magnolia (1999): A mosaic of interconnected stories that delve into the complexities of human relationships.'),
+    ],
+  ),
+
+  Director(
+    lastName: 'Villeneuve',
+    firstName: 'Denis',
+    biography:
+        'Denis Villeneuve, born on October 3, 1967, is a Canadian filmmaker known for his visually arresting and thought-provoking films. Notable for directing "Blade Runner 2049" and "Arrival," Villeneuve has made a significant impact on the science fiction genre.',
+    notableMovies: [
+      ('Blade Runner 2049 (2017): A visually stunning sequel to the iconic "Blade Runner," exploring themes of identity and humanity.'),
+      ('Arrival (2016): A cerebral science fiction film that explores language, communication, and the nature of time.'),
+      ('Prisoners (2013): A suspenseful thriller with a powerful ensemble cast, showcasing Villeneuve\'s directorial skill.'),
+    ],
+  ),
+
+  Director(
+    lastName: 'Coen',
+    firstName: 'Joel and Ethan',
+    biography:
+        'Joel and Ethan Coen, born on November 29, 1954, and September 21, 1957, respectively, are American filmmakers known for their distinctive style and dark humor. With a collaborative career spanning several decades, the Coen brothers have created a diverse range of films.',
+    notableMovies: [
+      ('Fargo (1996): A darkly comedic crime film that earned the Coen brothers an Academy Award for Best Original Screenplay.'),
+      ('No Country for Old Men (2007): A gripping thriller adapted from Cormac McCarthy\'s novel, winning four Academy Awards, including Best Picture.'),
+      ('The Big Lebowski (1998): A cult classic comedy that has achieved iconic status for its memorable characters and dialogue.'),
+    ],
+  ),
+  Director(
+    lastName: 'Wong',
+    firstName: 'Kar-Wai',
+    biography:
+        'Wong Kar-Wai, born on July 17, 1958, is a Hong Kong filmmaker known for his visually stylish and emotionally resonant films. With a unique approach to storytelling and cinematography, Wong has gained international acclaim for his work.',
+    notableMovies: [
+      ('In the Mood for Love (2000): A visually stunning and emotionally powerful exploration of unrequited love in 1960s Hong Kong.'),
+      ('Chungking Express (1994): An innovative and stylistically bold film that captures the essence of urban life in Hong Kong.'),
+      ('2046 (2004): A visually rich and complex film that serves as a loose sequel to "In the Mood for Love."'),
+    ],
+  ),
+
+  Director(
+    lastName: 'Cuaron',
+    firstName: 'Alfonso',
+    biography:
+        'Alfonso Cuarón, born on November 28, 1961, is a Mexican filmmaker known for his innovative storytelling and technical prowess. Notable for directing "Gravity" and "Roma," Cuarón has received critical acclaim and multiple awards for his work.',
+    notableMovies: [
+      ('Gravity (2013): A visually stunning and tense space thriller that earned Cuarón the Academy Award for Best Director.'),
+      ('Roma (2018): A heartfelt and visually striking film that pays tribute to Cuarón\'s upbringing in Mexico City.'),
+      ('Children of Men (2006): A dystopian science fiction film known for its gripping storytelling and long-take sequences.'),
+    ],
+  ),
   ];
 
   @override
