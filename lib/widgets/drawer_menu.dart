@@ -38,31 +38,7 @@ class DrawerMenu extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Stack(
-              children: [
-                Container(
-                  alignment: Alignment.bottomLeft,
-                  padding: EdgeInsets.all(8),
-                  child: Text(
-                    'TOP Peliculas',
-                    style: TextStyle(
-                      color: Colors.red[900],
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  height: 2, // Altura de la línea roja
-                  child: Container(
-                    color: Colors.red[900],
-                  ),
-                ),
-              ],
-            ),
+            child: Stack(),
           ),
           ...ListTile.divideTiles(
             context: context,
