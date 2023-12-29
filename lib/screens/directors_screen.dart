@@ -74,64 +74,61 @@ class DirectorsPage extends StatelessWidget {
         ('La lista de Schindler (1993): Poderoso retrato del Holocausto, destacando la humanidad en la oscuridad, ganadora de siete premios Oscar, incluido Mejor Director.'),
       ],
     ),
-Director(
-    lastName: 'Anderson',
-    firstName: 'Paul Thomas',
-    biography:
-        'Paul Thomas Anderson, born on June 26, 1970, is an American filmmaker known for his unique storytelling and visually stunning films. With movies like "There Will Be Blood" and "Boogie Nights," Anderson has established himself as a masterful director in contemporary cinema.',
-    notableMovies: [
-      ('There Will Be Blood (2007): A gripping drama exploring the dark side of ambition and greed, featuring an outstanding performance by Daniel Day-Lewis.'),
-      ('Boogie Nights (1997): An epic tale of the porn industry in the '70s and '80s, showcasing Anderson\'s storytelling prowess.'),
-      ('Magnolia (1999): A mosaic of interconnected stories that delve into the complexities of human relationships.'),
-    ],
-  ),
-
-  Director(
-    lastName: 'Villeneuve',
-    firstName: 'Denis',
-    biography:
-        'Denis Villeneuve, born on October 3, 1967, is a Canadian filmmaker known for his visually arresting and thought-provoking films. Notable for directing "Blade Runner 2049" and "Arrival," Villeneuve has made a significant impact on the science fiction genre.',
-    notableMovies: [
-      ('Blade Runner 2049 (2017): A visually stunning sequel to the iconic "Blade Runner," exploring themes of identity and humanity.'),
-      ('Arrival (2016): A cerebral science fiction film that explores language, communication, and the nature of time.'),
-      ('Prisoners (2013): A suspenseful thriller with a powerful ensemble cast, showcasing Villeneuve\'s directorial skill.'),
-    ],
-  ),
-
-  Director(
-    lastName: 'Coen',
-    firstName: 'Joel and Ethan',
-    biography:
-        'Joel and Ethan Coen, born on November 29, 1954, and September 21, 1957, respectively, are American filmmakers known for their distinctive style and dark humor. With a collaborative career spanning several decades, the Coen brothers have created a diverse range of films.',
-    notableMovies: [
-      ('Fargo (1996): A darkly comedic crime film that earned the Coen brothers an Academy Award for Best Original Screenplay.'),
-      ('No Country for Old Men (2007): A gripping thriller adapted from Cormac McCarthy\'s novel, winning four Academy Awards, including Best Picture.'),
-      ('The Big Lebowski (1998): A cult classic comedy that has achieved iconic status for its memorable characters and dialogue.'),
-    ],
-  ),
-  Director(
-    lastName: 'Wong',
-    firstName: 'Kar-Wai',
-    biography:
-        'Wong Kar-Wai, born on July 17, 1958, is a Hong Kong filmmaker known for his visually stylish and emotionally resonant films. With a unique approach to storytelling and cinematography, Wong has gained international acclaim for his work.',
-    notableMovies: [
-      ('In the Mood for Love (2000): A visually stunning and emotionally powerful exploration of unrequited love in 1960s Hong Kong.'),
-      ('Chungking Express (1994): An innovative and stylistically bold film that captures the essence of urban life in Hong Kong.'),
-      ('2046 (2004): A visually rich and complex film that serves as a loose sequel to "In the Mood for Love."'),
-    ],
-  ),
-
-  Director(
-    lastName: 'Cuaron',
-    firstName: 'Alfonso',
-    biography:
-        'Alfonso Cuarón, born on November 28, 1961, is a Mexican filmmaker known for his innovative storytelling and technical prowess. Notable for directing "Gravity" and "Roma," Cuarón has received critical acclaim and multiple awards for his work.',
-    notableMovies: [
-      ('Gravity (2013): A visually stunning and tense space thriller that earned Cuarón the Academy Award for Best Director.'),
-      ('Roma (2018): A heartfelt and visually striking film that pays tribute to Cuarón\'s upbringing in Mexico City.'),
-      ('Children of Men (2006): A dystopian science fiction film known for its gripping storytelling and long-take sequences.'),
-    ],
-  ),
+    Director(
+      lastName: 'Anderson',
+      firstName: 'Paul Thomas',
+      biography:
+          'Paul Thomas Anderson, nacido el 26 de junio de 1970, es un cineasta estadounidense conocido por su narrativa única y películas visualmente impactantes. Con filmes como "There Will Be Blood" y "Boogie Nights", Anderson se ha establecido como un director magistral en el cine contemporáneo.',
+      notableMovies: [
+        ('There Will Be Blood (2007): Un épico drama sobre la avaricia y la obsesión durante la fiebre del petróleo en California.'),
+        ('Boogie Nights (1997): Una exploración del mundo del cine para adultos en los años 70 y 80.'),
+        ('Magnolia (1999): Una narrativa interconectada que aborda temas de conexión humana, destino y redención.'),
+      ],
+    ),
+    Director(
+      lastName: 'Villeneuve',
+      firstName: 'Denis',
+      biography:
+          'Denis Villeneuve, nacido el 3 de octubre de 1967, es un cineasta canadiense reconocido por sus películas visualmente impactantes y reflexivas. Destacado por dirigir "Blade Runner 2049" y "Arrival", Villeneuve ha dejado una huella significativa en el género de ciencia ficción.',
+      notableMovies: [
+        ('Blade Runner 2049 (2017): Una secuela visualmente impactante del icónico "Blade Runner", que explora temas de identidad y humanidad.'),
+        ('Arrival (2016): Una película de ciencia ficción cerebral que explora el lenguaje, la comunicación y la naturaleza del tiempo.'),
+        ('Prisoners (2013): Un thriller lleno de suspense con un poderoso elenco, que destaca la habilidad directiva de Villeneuve.'),
+      ],
+    ),
+    Director(
+      lastName: 'Coen',
+      firstName: 'Joel y Ethan',
+      biography:
+          'Joel y Ethan Coen, nacidos el 29 de noviembre de 1954 y el 21 de septiembre de 1957, respectivamente, son cineastas estadounidenses conocidos por su estilo distintivo y humor oscuro. Con una carrera colaborativa que abarca varias décadas, los hermanos Coen han creado una amplia gama de películas.',
+      notableMovies: [
+        ('Fargo (1996): Una película de crimen oscura y cómica que valió a los hermanos Coen un Premio de la Academia al Mejor Guión Original.'),
+        ('No Country for Old Men (2007): Un thriller impactante adaptado de la novela de Cormac McCarthy, ganador de cuatro premios de la Academia, incluyendo Mejor Película.'),
+        ('The Big Lebowski (1998): Una comedia de culto que ha alcanzado estatus icónico por sus personajes y diálogos memorables..'),
+      ],
+    ),
+    Director(
+      lastName: 'Wong',
+      firstName: 'Kar-Wai',
+      biography:
+          'Wong Kar-Wai, nacido el 17 de julio de 1958, es un cineasta de Hong Kong conocido por sus películas visualmente elegantes y emocionalmente resonantes. Con un enfoque único para contar historias y cinematografía, Wong ha ganado reconocimiento internacional por su trabajo.',
+      notableMovies: [
+        ('In the Mood for Love (2000): Una exploración visualmente impactante y emocionalmente poderosa del amor no correspondido en el Hong Kong de la década de 1960.'),
+        ('Chungking Express (1994): Una película innovadora y audaz desde el punto de vista estilístico que captura la esencia de la vida urbana en Hong Kong.'),
+        ('2046 (2004): Una película visualmente rica y compleja que sirve como una secuela no oficial de "In the Mood for Love".'),
+      ],
+    ),
+    Director(
+      lastName: 'Cuarón',
+      firstName: 'Alfonso',
+      biography:
+          'Alfonso Cuarón, nacido el 28 de noviembre de 1961, es un cineasta mexicano conocido por su narrativa innovadora y destreza técnica. Notable por dirigir "Gravity" y "Roma", Cuarón ha recibido aclamación crítica y múltiples premios por su trabajo.',
+      notableMovies: [
+        ('Gravity (2013): Un thriller espacial visualmente impactante y tenso que le valió a Cuarón el Premio de la Academia al Mejor Director.'),
+        ('Roma (2018): Una película conmovedora y visualmente impactante que rinde homenaje a la infancia de Cuarón en la Ciudad de México.'),
+        ('Children of Men (2006): Una película de ciencia ficción distópica conocida por su narrativa envolvente y secuencias de tomas largas.'),
+      ],
+    ),
   ];
 
   @override
