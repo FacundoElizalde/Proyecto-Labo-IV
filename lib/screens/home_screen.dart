@@ -40,7 +40,7 @@ class MovieDetailScreen extends StatelessWidget {
         children: [
           // Primera página
           Container(
-            color: Colors.white,
+            color: Colors.red[900],
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,9 +50,14 @@ class MovieDetailScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 SizedBox(height: 20),
-                Image.network(
-                  movie.imageUrl,
-                  height: 200,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 2.0),
+                  ),
+                  child: Image.network(
+                    movie.imageUrl,
+                    height: 200,
+                  ),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
@@ -67,6 +72,7 @@ class MovieDetailScreen extends StatelessWidget {
               ],
             ),
           ),
+
           Container(
             color: Colors.green,
             padding: EdgeInsets.all(15),
