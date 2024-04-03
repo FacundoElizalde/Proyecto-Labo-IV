@@ -1,13 +1,8 @@
-# flutter_repo_guide_2023
+# Proyecto Laboratorio IV - Tecnicatura Universitaria en Programación (UTN FRBB)
 
-Repositorio de Flutter para TUP-LAB IV 2023
+Nuestro proyecto consiste en una aplicación donde se mostrarán las diferentes películas, así como los diferentes géneros, directores e incluso una función para poder buscar determinada información de la película.
+Al elegir una de las películas mostradas en una de las secciones, se podrá seleccionar en cada una para obtener más información respecto a la misma.
 
-## Getting Started
+- Esta aplicación está hecha con fines estudiantiles.
 
-Links de Interes
-- [Get Started - Instalación del framework](https://docs.flutter.dev/get-started/codelab)
-
-- [Ejemplos Utiles](https://docs.flutter.dev/cookbook)
-
-Documentación
-[Docs Flutter](https://docs.flutter.dev/), Ejemplos, tutoriales y guía de referencia de la API.
+## Colaboradores: Luciano Cossia, Facundo Elizalde, Gonzalo Stickar.
