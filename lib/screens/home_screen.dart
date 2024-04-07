@@ -287,25 +287,71 @@ class HomeScreen extends StatelessWidget {
         ], // Remove this extra closing bracket
       ),
       drawer: DrawerMenu(),
-      body: ListView.builder(
-        itemCount: movies.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(movies[index].title),
-            subtitle: Text('${movies[index].director} (${movies[index].year})'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MovieDetailScreen(
-                    movie: movies[index],
-                    pageController: pageController,
-                  ),
-                ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Buscar película',
+                border: OutlineInputBorder(),
+              ),
+              onSubmitted: (value) {
+                // Implementa la lógica para filtrar las películas aquí
+                print('Texto ingresado: $value');
+              },
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Películas generadas'),
+                    content: SizedBox(
+                      // Utiliza SizedBox para limitar el tamaño del ListView
+                      width: MediaQuery.of(context).size.width *
+                          0.9, // Ajusta el ancho según tu preferencia
+                      height: MediaQuery.of(context).size.height *
+                          0.6, // Ajusta el alto según tu preferencia
+                      child: ListView.builder(
+                        itemCount: movies.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(movies[index].title),
+                            subtitle: Text(
+                                '${movies[index].director} (${movies[index].year})'),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MovieDetailScreen(
+                                    movie: movies[index],
+                                    pageController: pageController,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Cerrar el diálogo
+                        },
+                        child: Text('Cerrar'),
+                      ),
+                    ],
+                  );
+                },
               );
             },
-          );
-        },
+            child: Text('Mostrar películas'),
+          ),
+        ],
       ),
     );
   }
