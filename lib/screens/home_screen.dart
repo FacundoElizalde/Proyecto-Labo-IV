@@ -84,11 +84,11 @@ class MovieDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  'Género: ${movie.generosPelicula.join(', ')}',
+                  'Género/s: ${movie.generosPelicula.join(', ')}',
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 Text(
-                  'Director: ${movie.directorPelicula.join(', ')}', // .join(', ') sirve para recorrer la lista y separar.
+                  'Director/es: ${movie.directorPelicula.join(', ')}', // .join(', ') sirve para recorrer la lista y separar.
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 Text(
