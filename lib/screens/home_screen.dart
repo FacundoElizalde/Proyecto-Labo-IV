@@ -4,30 +4,33 @@ import 'package:flutter_repo_guide/widgets/drawer_menu.dart';
 import 'package:flutter_repo_guide/screens/profile_page.dart';
 
 class Movie {
+  final String id;
   final String title;
-  final String director;
-  final List<String> genres;
-  final int year;
-  final String releaseDate;
-  final String synopsis;
   final String imageUrl;
+  final String synopsis;
+  final List<String> generosPelicula;
+  final List<String> directorPelicula;
 
   Movie({
+    required this.id,
     required this.title,
-    required this.director,
-    required this.genres,
-    required this.year,
-    required this.releaseDate,
-    required this.synopsis,
     required this.imageUrl,
+    required this.synopsis,
+    required this.generosPelicula,
+    required this.directorPelicula,
   });
 }
 
 class MovieDetailScreen extends StatelessWidget {
-  final Movie movie;
   final PageController pageController;
+  final Movie movie;
+  final int index;
 
-  MovieDetailScreen({required this.movie, required this.pageController});
+  MovieDetailScreen({
+    required this.pageController,
+    required this.movie,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,7 @@ class MovieDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '${movie.title} (${movie.year})',
+                  '${movie.title} (${movie.id})',
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 SizedBox(height: 20),
@@ -73,6 +76,7 @@ class MovieDetailScreen extends StatelessWidget {
             ),
           ),
 
+          // Segunda página
           Container(
             color: Colors.green,
             padding: EdgeInsets.all(15),
@@ -80,11 +84,11 @@ class MovieDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  'Género: ${movie.genres.join(', ')}',
+                  'Género: ${movie.generosPelicula.join(', ')}',
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 Text(
-                  'Director: ${movie.director}',
+                  'Director: ${movie.directorPelicula.join(', ')}', // .join(', ') sirve para recorrer la lista y separar.
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 Text(
@@ -117,129 +121,60 @@ class MovieDetailScreen extends StatelessWidget {
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final List<Movie> movies = [
-    Movie(
-      title: 'Cadena perpetua',
-      director: 'Frank Darabont',
-      genres: ['Drama'],
-      year: 1994,
-      releaseDate: '23 de septiembre de 1994',
-      synopsis:
-          'Dos hombres encarcelados establecen un vínculo a lo largo de varios años, encontrando consuelo y redención eventual a través de actos de decencia común.',
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN2ky4G-y85pMam-ccRhIzuGp5rVk65fk2Sg&usqp=CAU',
-    ),
-    Movie(
-      title: 'El caballero de la noche',
-      director: 'Christopher Nolan',
-      genres: ['Action', 'Crime', 'Drama'],
-      year: 2008,
-      releaseDate: '18 de julio de 2008',
-      synopsis:
-          'Cuando surge la amenaza conocida como el Joker, Batman debe enfrentarlo para hacer justicia.',
-      imageUrl:
-          'https://live.staticflickr.com/3085/2650048909_ee1bbc2a0b_z.jpg',
-    ),
-    Movie(
-      title: 'Pulp Fiction',
-      director: 'Quentin Tarantino',
-      genres: ['Crime', 'Drama'],
-      year: 1994,
-      releaseDate: '21 de mayo de 1994',
-      synopsis:
-          'Las vidas de dos sicarios, un boxeador, un gánster y su esposa, y un par de bandidos de un restaurante se entrelazan en cuatro relatos de violencia y redención.',
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKpjEnZ3a_S1yO47YC54VbmYspVlKX8yrUYg&usqp=CAU',
-    ),
-    Movie(
-      title: 'El Padrino',
-      director: 'Francis Ford Coppola',
-      genres: ['Crime', 'Drama'],
-      year: 1972,
-      releaseDate: '24 de marzo de 1972',
-      synopsis:
-          'El patriarca envejecido de una dinastía del crimen organizado transfiere el control de su imperio clandestino a su renuente hijo.',
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNTDu43x_AePmF3Dszc3uOYFfLYmSS6XUMjw&usqp=CAU',
-    ),
-    Movie(
-      title: 'Forrest Gump',
-      director: 'Robert Zemeckis',
-      genres: ['Drama', 'Romance'],
-      year: 1994,
-      releaseDate: '6 de julio de 1994',
-      synopsis:
-          'Las presidencias de Kennedy y Johnson, los eventos de Vietnam, Watergate y otras historias se desarrollan desde la perspectiva de un hombre de Alabama con un coeficiente intelectual de 75.',
-      imageUrl:
-          'https://images.cdn2.buscalibre.com/fit-in/360x360/d9/e0/d9e064b59a6c29981af806b3ee87d95b.jpg',
-    ),
-    Movie(
-      title: 'Matrix',
-      director: 'The Wachowskis',
-      genres: ['Action', 'Sci-Fi'],
-      year: 1999,
-      releaseDate: '31 de marzo de 1999',
-      synopsis:
-          'Un hacker informático descubre la verdadera naturaleza de su realidad y su papel en la guerra contra sus controladores.',
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTixvJ-5yFL_84VPsG8ZgG9IWnRjSOwauff3wKyAjRyFEIEVzsp5Fh1lLKNS4jDqIyqPko&usqp=CAU',
-    ),
-    Movie(
-      title: 'La lista de Schindler',
-      director: 'Steven Spielberg',
-      genres: ['Biography', 'Drama', 'History'],
-      year: 1993,
-      releaseDate: '15 de diciembre de 1993',
-      synopsis:
-          'En la Polonia ocupada por los alemanes durante la Segunda Guerra Mundial, el industrial Oskar Schindler se preocupa gradualmente por su fuerza laboral judía después de presenciar su persecución por parte de los nazis.',
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRVhnEkec8HtB-43wFp9BPOB3-YPxO7WO7WuPJy_zxCMbZZfIEs17o-i4WzsOvVAKWvhc&usqp=CAU',
-    ),
-    Movie(
-      title: 'El club de la pelea',
-      director: 'David Fincher',
-      genres: ['Drama'],
-      year: 1999,
-      releaseDate: '15 de octubre de 1999',
-      synopsis:
-          'Un trabajador de oficina insomne y un fabricante de jabón sin preocupaciones forman un club de lucha clandestino que evoluciona hacia algo mucho más.',
-      imageUrl:
-          'https://cdn.colombia.com/cine/2012/11/97c52f3ce5084a4da84fa14ace6af697.png',
-    ),
-    Movie(
-      title: 'Los Juegos del Hambre: Balada de Pajaros Cantores y Serpientes',
-      director: 'Francis Lawrence',
-      genres: ['Action', 'Adventure', 'Drama'],
-      year: 2023,
-      releaseDate: '16 de Noviembre de 2023',
-      synopsis:
-          'Años antes de convertirse en el tiránico presidente de Panem, Coriolanus Snow, de 18 años de edad, ve una oportunidad para un cambio de suerte cuando es mentor de Lucy Gray Baird, la tributo del Distrito 12.',
-      imageUrl:
-          'https://archivos-cms.cinecolombia.com/images/5/6/2/2/42265-7-esl-CO/f74b830866e0-2_poster_480x670.png',
-    ),
-    Movie(
-      title: 'El Señor de los Anillos: El retorno del rey',
-      director: 'Peter Jackson',
-      genres: ['Action', 'Adventure', 'Drama'],
-      year: 2003,
-      releaseDate: '17 de diciembre de 2003',
-      synopsis:
-          'Mientras el ejército de Sauron ataca Minas Tirith, Frodo y Sam se acercan a Mordor con el anillo único para destruirlo.',
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScHPzX0DiM3cdEM53lRmdiKpkFPdd5lQW2BXRn3W3V-WDM8E8DJT4rbEuga9sGAZ5UGrM&usqp=CAU',
-    ),
-    Movie(
-      title: 'Harry Potter y la Piedra Filosofal',
-      director: 'Chris Columbus',
-      genres: ['Adventure', 'Family', 'Fantasy'],
-      year: 2001,
-      releaseDate: '22 de noviembre de 2001',
-      synopsis:
-          'Un joven mago, Harry Potter, descubre su identidad en la escuela de magia de Hogwarts y enfrenta el malvado plan de Voldemort para obtener la piedra filosofal.',
-      imageUrl:
-          'https://i0.wp.com/cineyvaloressj.com/wp-content/uploads/2020/08/42100525172832813e301be5faadbbf1.jpg?fit=873%2C1200&ssl=1&w=640',
-    ),
-  ];
+  final Map<String, dynamic> moviesData = {
+    "nombre_peliculas": [
+      "Cadena perpetua",
+      "El caballero de la noche",
+      "Pulp Fiction",
+      "El Padrino",
+      "Forrest Gump",
+      "Matrix",
+      "La lista de Schindler",
+      "El club de la pelea",
+      "Los Juegos del Hambre: Balada de Pajaros Cantores y Serpientes",
+      "El Señor de los Anillos: El retorno del rey",
+      "Harry Potter y la Piedra Filosofal"
+    ],
+    "imagenes_peliculas": [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN2ky4G-y85pMam-ccRhIzuGp5rVk65fk2Sg&usqp=CAU",
+      "https://live.staticflickr.com/3085/2650048909_ee1bbc2a0b_z.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKpjEnZ3a_S1yO47YC54VbmYspVlKX8yrUYg&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNTDu43x_AePmF3Dszc3uOYFfLYmSS6XUMjw&usqp=CAU",
+      "https://images.cdn2.buscalibre.com/fit-in/360x360/d9/e0/d9e064b59a6c29981af806b3ee87d95b.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTixvJ-5yFL_84VPsG8ZgG9IWnRjSOwauff3wKyAjRyFEIEVzsp5Fh1lLKNS4jDqIyqPko&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRVhnEkec8HtB-43wFp9BPOB3-YPxO7WO7WuPJy_zxCMbZZfIEs17o-i4WzsOvVAKWvhc&usqp=CAU",
+      "https://cdn.colombia.com/cine/2012/11/97c52f3ce5084a4da84fa14ace6af697.png",
+      "https://archivos-cms.cinecolombia.com/images/5/6/2/2/42265-7-esl-CO/f74b830866e0-2_poster_480x670.png",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScHPzX0DiM3cdEM53lRmdiKpkFPdd5lQW2BXRn3W3V-WDM8E8DJT4rbEuga9sGAZ5UGrM&usqp=CAU",
+      "https://i0.wp.com/cineyvaloressj.com/wp-content/uploads/2020/08/42100525172832813e301be5faadbbf1.jpg?fit=873%2C1200&ssl=1&w=640"
+    ],
+    "id_peliculas": [
+      "tt0111161",
+      "tt0468569",
+      "tt0110912",
+      "tt0068646",
+      "tt0109830",
+      "tt0133093",
+      "tt0108052",
+      "tt0137523",
+      "tt5834204",
+      "tt0167260",
+      "tt0241527"
+    ],
+    "sinopsis_peliculas": [
+      "Dos hombres encarcelados establecen un vínculo a lo largo de varios años, encontrando consuelo y redención eventual a través de actos de decencia común.",
+      "Cuando surge la amenaza conocida como el Joker, Batman debe enfrentarlo para hacer justicia.",
+      "Las vidas de dos sicarios, un boxeador, un gánster y su esposa, y un par de bandidos de un restaurante se entrelazan en cuatro relatos de violencia y redención.",
+      "El patriarca envejecido de una dinastía del crimen organizado transfiere el control de su imperio clandestino a su renuente hijo.",
+      "Las presidencias de Kennedy y Johnson, los eventos de Vietnam, Watergate y otras historias se desarrollan desde la perspectiva de un hombre de Alabama con un coeficiente intelectual de 75.",
+      "Un hacker informático descubre la verdadera naturaleza de su realidad y su papel en la guerra contra sus controladores.",
+      "En la Polonia ocupada por los alemanes durante la Segunda Guerra Mundial, el industrial Oskar Schindler se preocupa gradualmente por su fuerza laboral judía después de presenciar su persecución por parte de los nazis.",
+      "Un trabajador de oficina insomne y un fabricante de jabón sin preocupaciones forman un club de lucha clandestino que evoluciona hacia algo mucho más.",
+      "Años antes de convertirse en el tiránico presidente de Panem, Coriolanus Snow, de 18 años de edad, ve una oportunidad para un cambio de suerte cuando es mentor de Lucy Gray Baird, la tributo del Distrito 12.",
+      "Mientras el ejército de Sauron ataca Minas Tirith, Frodo y Sam se acercan a Mordor con el anillo único para destruirlo.",
+      "Un joven mago, Harry Potter, descubre su identidad en la escuela de magia de Hogwarts y enfrenta el malvado plan de Voldemort para obtener la piedra filosofal."
+    ]
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -310,25 +245,36 @@ class HomeScreen extends StatelessWidget {
                   return AlertDialog(
                     title: Text('Películas generadas'),
                     content: SizedBox(
-                      // Utiliza SizedBox para limitar el tamaño del ListView
-                      width: MediaQuery.of(context).size.width *
-                          0.9, // Ajusta el ancho según tu preferencia
-                      height: MediaQuery.of(context).size.height *
-                          0.6, // Ajusta el alto según tu preferencia
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.6,
                       child: ListView.builder(
-                        itemCount: movies.length,
+                        itemCount: moviesData['nombre_peliculas'].length,
                         itemBuilder: (context, index) {
                           return ListTile(
-                            title: Text(movies[index].title),
+                            title: Text(moviesData['nombre_peliculas'][index]),
                             subtitle: Text(
-                                '${movies[index].director} (${movies[index].year})'),
+                              moviesData['sinopsis_peliculas'][index],
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => MovieDetailScreen(
-                                    movie: movies[index],
+                                    movie: Movie(
+                                      id: moviesData['id_peliculas'][index],
+                                      title: moviesData['nombre_peliculas']
+                                          [index],
+                                      imageUrl: moviesData['imagenes_peliculas']
+                                          [index],
+                                      synopsis: moviesData['sinopsis_peliculas']
+                                          [index],
+                                      generosPelicula: [], // Agrega los géneros si los tienes
+                                      directorPelicula: [], // Agrega el director si lo tienes
+                                    ),
                                     pageController: pageController,
+                                    index: index, // Aquí pasas el índice
                                   ),
                                 ),
                               );
