@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_repo_guide/widgets/drawer_menu.dart';
 
-class Director {
-  final String lastName;
-  final String firstName;
-  final String biography;
-  final List<String> notableMovies;
-
-  Director({
-    required this.lastName,
-    required this.firstName,
-    required this.biography,
-    required this.notableMovies,
-  });
-}
-
 class DirectorsPage extends StatelessWidget {
   DirectorsPage({Key? key}) : super(key: key);
 
