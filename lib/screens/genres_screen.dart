@@ -1,35 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_repo_guide/widgets/drawer_menu.dart';
+import 'package:http/http.dart' as http;
 
 class GenreScreen extends StatelessWidget {
   GenreScreen({Key? key}) : super(key: key);
-
-  final Map<String, dynamic> moviesData = {
-    "nombre_peliculas": [
-      "The Lion King",
-      "Toy Story",
-      "Finding Nemo",
-      "Shrek",
-      "Frozen",
-      "Moana",
-      "The Incredibles",
-      "Zootopia",
-      "Coco",
-      "Up"
-    ],
-    "generos_lista": [
-      "Adventure, Action, Drama",
-      "Comedy, Animation, Comedy",
-      "Adventure, Action, Drama",
-      "Adventure, Action, Drama",
-      "Adventure, Action, Drama",
-      "Adventure, Action, Drama",
-      "Adventure, Action, Drama",
-      "Adventure, Action, Drama",
-      "Adventure, Action, Drama",
-      "Adventure, Action, Drama"
-    ]
-  };
 
   final List<String> genres = [
     'Acción',
@@ -47,7 +21,6 @@ class GenreScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.red[900],
       ),
-      drawer: DrawerMenu(),
       body: ListView.builder(
         itemCount: genres.length,
         itemBuilder: (context, index) {
@@ -63,52 +36,128 @@ class GenreScreen extends StatelessWidget {
     );
   }
 
-  void _showGenreDetails(BuildContext context, String genreName) {
-    // Mapeo de géneros en inglés a español
-    Map<String, String> genreTranslations = {
-      'Aventura': 'Adventure',
-      'Acción': 'Action',
-      'Comedia': 'Comedy',
-      'Drama': 'Drama',
-      'Animación': 'Animation',
-    };
-
-    List<String> moviesForGenre = [];
-    for (int i = 0; i < moviesData['generos_lista'].length; i++) {
-      String genresString = moviesData['generos_lista'][i];
-
-      // Traducir el género de inglés a español
-      String translatedGenre = genreTranslations[genreName] ?? genreName;
-
-      if (genresString.contains(translatedGenre)) {
-        moviesForGenre.add(moviesData['nombre_peliculas'][i]);
-      }
+  void _showGenreDetails(BuildContext context, String genreName) async {
+    String generoMandar = "";
+    String generoEnglish = "";
+    if (genreName == "Acción") {
+      generoMandar = "accion";
+      generoEnglish = "Action";
+    } else if (genreName == "Comedia") {
+      generoMandar = "comedia";
+      generoEnglish = "Comedy";
+    } else if (genreName == "Drama") {
+      generoMandar = "drama";
+      generoEnglish = "Drama";
+    } else if (genreName == "Aventura") {
+      generoMandar = "aventura";
+      generoEnglish = "Adventure";
+    } else if (genreName == "Animación") {
+      generoMandar = "animacion";
+      generoEnglish = "Animation";
     }
 
-    // Mostrar el diálogo con las películas para el género seleccionado
+    final url =
+        'https://peliculas-info.onrender.com/peliculas/genero/${generoMandar.toLowerCase()}';
+
     showDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(genreName),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Películas para el género $genreName:'),
-              for (String movie in moviesForGenre) Text('- $movie'),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Cerrar'),
-            ),
-          ],
-        );
-      },
+      builder: (context) => const Center(
+          child: CircularProgressIndicator()), // Indicador de carga
+      barrierDismissible:
+          false, // Evita que el diálogo sea cerrado tocando fuera de él
     );
+
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {'x-flutter-app': 'true'},
+      );
+
+      Navigator.pop(context); // Cerrar el indicador de carga
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+
+        List<String> movieNames = List<String>.from(data['nombre_peliculas']);
+        List<String> generosLista = List<String>.from(data['generos_lista']);
+
+        List<String> moviesWithGenre = [];
+        // Iterar sobre las películas y sus géneros
+        for (int i = 0; i < movieNames.length; i++) {
+          // Verificar si la película tiene el género seleccionado
+          if (generosLista[i]
+              .toLowerCase()
+              .contains(generoEnglish.toLowerCase())) {
+            // Agregar la película a la lista de películas relevantes
+            moviesWithGenre.add(movieNames[i]);
+          }
+        }
+
+        // Mostrar el JSON obtenido en un diálogo
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Películas para el género $genreName'),
+              content: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: moviesWithGenre.map((movieName) {
+                    return Text(movieName);
+                  }).toList(),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Cerrar'),
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        // Mostrar mensaje de error si la solicitud falla
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Películas no encontradas'),
+              content: const Text(
+                  'No se encontró ninguna película, vuelva a intentar buscar.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Cerrar'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (error) {
+      // Mostrar mensaje de error si ocurre un error inesperado
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Error'),
+            content: const Text('An unexpected error occurred'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Cerrar'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
