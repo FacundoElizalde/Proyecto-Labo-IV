@@ -1,88 +1,58 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_repo_guide/widgets/drawer_menu.dart';
+import 'package:http/http.dart' as http;
 
-class DirectorsPage extends StatelessWidget {
-  DirectorsPage({Key? key}) : super(key: key);
+class DirectorsPage extends StatefulWidget {
+  @override
+  _DirectorsPageState createState() => _DirectorsPageState();
+}
 
-  final Map<String, dynamic> moviesData = {
-    "nombre_peliculas": [
-      "Sky",
-      "Inception",
-      "Pulp Fiction",
-      "The Shawshank Redemption",
-      "The Godfather",
-      "Interstellar",
-      "The Dark Knight",
-      "Titanic",
-      "Avatar",
-      "Jurassic Park"
-    ],
-    "directores_lista": [
-      "Fabienne Berthaud",
-      "Christopher Nolan",
-      "Quentin Tarantino",
-      "Frank Darabont",
-      "Francis Ford Coppola",
-      "Christopher Nolan",
-      "Christopher Nolan",
-      "James Cameron",
-      "James Cameron",
-      "Steven Spielberg"
-    ]
-  };
+class _DirectorsPageState extends State<DirectorsPage> {
+  List<String> movieNames = [];
+  List<String> directorNames = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    final response = await http.get(
+      Uri.parse('https://peliculas-info.onrender.com/peliculas/directores'),
+      headers: {'x-flutter-app': 'true'},
+    );
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      //print(response.body);
+      setState(() {
+        movieNames = List<String>.from(data['nombre_peliculas']);
+        directorNames = List<String>.from(data['directores_lista']);
+      });
+      //print(movieNames);
+      //print(directorNames);
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Directores'),
+        title: Text('Directores'),
         centerTitle: true,
         backgroundColor: Colors.red[900],
       ),
-      drawer: DrawerMenu(),
       body: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemCount: moviesData['nombre_peliculas'].length,
+        itemCount: movieNames.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(moviesData['nombre_peliculas'][index]),
-            onTap: () {
-              _showDirectorDetails(
-                  context, index); // Pasar el índice como un entero
-            },
+            title: Text(movieNames[index]),
+            subtitle: Text('Director/es: ${directorNames[index]}'),
           );
         },
       ),
-    );
-  }
-
-  void _showDirectorDetails(BuildContext context, int index) {
-    String movieTitle = moviesData['nombre_peliculas'][index];
-    String directorName = moviesData['directores_lista'][index];
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(movieTitle),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Director/es: $directorName'),
-              const SizedBox(height: 8)
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Cerrar'),
-            ),
-          ],
-        );
-      },
     );
   }
 }
