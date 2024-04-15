@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
               onSubmitted: (value) {
-                print('Texto ingresado: $value');
+                _searchMovies(context, value);
               },
             ),
           ),
@@ -93,6 +93,68 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _searchMovies(BuildContext context, String searchTerm) async {
+    // Muestra el indicador de carga circular
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      final url =
+          Uri.parse('https://peliculas-info.onrender.com/peliculas/buscar');
+      final response = await http.post(
+        url,
+        headers: {'x-flutter-app': 'true'},
+        body: {'busqueda': '$searchTerm'},
+      );
+
+      if (response.statusCode == 200) {
+        print(searchTerm);
+        print(response.body);
+        final searchData = json.decode(response.body);
+        Navigator.pop(context); // Oculta el indicador de carga circular
+
+        // Navega a la lista de películas con los resultados de la búsqueda
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MoviesList(data: searchData),
+          ),
+        );
+      } else {
+        throw Exception('Failed to search movies');
+      }
+    } catch (e) {
+      print('Error searching movies: $e');
+      Navigator.pop(context); // Oculta el indicador de carga circular
+      // Muestra un diálogo o mensaje de error al usuario
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text(
+                'Ocurrió un error al buscar películas. Por favor, inténtalo de nuevo más tarde.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   Future<Map<String, dynamic>> fetchData() async {
