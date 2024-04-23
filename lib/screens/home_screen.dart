@@ -47,65 +47,87 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       drawer: DrawerMenu(),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Encuentra tus películas favoritas',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.75,
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    labelText: 'Buscar película',
-                    border: OutlineInputBorder(),
+      body: Stack(
+        children: [
+          Image.network(
+            'https://img3.wallspic.com/crops/5/3/8/6/5/156835/156835-wallpapoers_de_cine-cine-teatro-karikaalan-multicines-1920x1080.jpg',
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Encuentra tus películas favoritas',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
-                  onSubmitted: (value) {
-                    _searchMovies(context, value);
-                  },
-                ),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      return Center(
-                        child: CircularProgressIndicator(),
+                  SizedBox(height: 20),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.50,
+                    child: TextField(
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white), // Color del texto
+                      decoration: InputDecoration(
+                        labelText: 'Buscar película',
+                        labelStyle: TextStyle(
+                            color: Colors.white), // Color del texto del label
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.white), // Color del borde
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors
+                                  .white), // Color del borde cuando está activo
+                        ),
+                      ),
+                      onSubmitted: (value) {
+                        _searchMovies(context, value);
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () async {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      );
+
+                      final moviesData = await fetchData();
+
+                      Navigator.pop(context);
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MoviesList(data: moviesData),
+                        ),
                       );
                     },
-                  );
-
-                  final moviesData = await fetchData();
-
-                  Navigator.pop(context);
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MoviesList(data: moviesData),
+                    child: const Text('Mostrar películas'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red[900],
                     ),
-                  );
-                },
-                child: const Text('Mostrar películas'),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.red[900],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
