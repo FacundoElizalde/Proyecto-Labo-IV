@@ -309,10 +309,14 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Detalles de la Película'),
+        backgroundColor: Colors.red, // Color del app bar
       ),
       body: _isLoading
           ? Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.red), // Color del indicador de progreso
+              ),
             )
           : _movieData != null
               ? ListView(
@@ -346,7 +350,7 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
                     'No se pudo cargar la información de la película',
                     style: TextStyle(
                       fontStyle: FontStyle.italic,
-                      color: Colors.red,
+                      color: Colors.red, // Color del texto de error
                     ),
                   ),
                 ),
@@ -363,6 +367,7 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
             '$title:',
             style: TextStyle(
               fontWeight: FontWeight.bold,
+              color: Colors.red, // Color del título
             ),
           ),
           Text(
