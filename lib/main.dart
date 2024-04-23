@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mis Peliculas',
+      title: 'TOP Peliculas',
       // theme: Preferences.darkmode ? ThemeData.dark() : ThemeData.light(),
       theme: Provider.of<ThemeProvider>(context, listen: true).temaActual,
       debugShowCheckedModeBanner: false,
