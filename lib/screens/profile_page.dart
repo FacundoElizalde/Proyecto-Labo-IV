@@ -15,6 +15,7 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text('Login'),
         elevation: 10,
+        backgroundColor: Colors.red[900],
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -27,6 +27,7 @@ class _FormScreenState extends State<FormScreen> {
         centerTitle: true,
         title: const Text('Registrarse'),
         elevation: 10,
+        backgroundColor: Colors.red[900],
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),

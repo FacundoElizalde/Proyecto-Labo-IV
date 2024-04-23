@@ -99,6 +99,9 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 child: const Text('Mostrar películas'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red[900],
+                ),
               ),
             ],
           ),
@@ -265,6 +268,9 @@ class MovieDetailScreen extends StatelessWidget {
                 );
               },
               child: Text('Mostrar información'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red[900],
+              ),
             ),
           ],
         ),
