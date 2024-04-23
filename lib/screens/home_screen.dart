@@ -320,14 +320,13 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Year: ${_movieData!['Year']}'),
-                          Text('Synopsis: ${_movieData!['Plot']}'),
+                          Text('Año: ${_movieData!['Year']}'),
+                          Text('Sinopsis: ${_movieData!['Plot']}'),
                           Text('Director(s): ${_movieData!['Director']}'),
-                          Text('Genre: ${_movieData!['Genre']}'),
-                          Text('Language: ${_movieData!['Language']}'),
-                          Text('Country: ${_movieData!['Country']}'),
-                          Text('Awards: ${_movieData!['Awards']}'),
-                          // Agrega más información según lo necesites
+                          Text('Genero: ${_movieData!['Genre']}'),
+                          Text('Idioma: ${_movieData!['Language']}'),
+                          Text('Pais: ${_movieData!['Country']}'),
+                          Text('Premios: ${_movieData!['Awards']}'),
                         ],
                       ),
                     ),
