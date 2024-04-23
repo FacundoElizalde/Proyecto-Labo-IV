@@ -130,7 +130,7 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       } else {
-        throw Exception('Failed to search movies');
+        throw Exception('No se encontró la película con nombre: $searchTerm');
       }
     } catch (e) {
       print('Error searching movies: $e');
@@ -142,7 +142,7 @@ class HomeScreen extends StatelessWidget {
           return AlertDialog(
             title: Text('Error'),
             content: Text(
-                'Ocurrió un error al buscar películas. Por favor, inténtalo de nuevo más tarde.'),
+                'No se encontró ninguna película con el nombre: $searchTerm'),
             actions: [
               TextButton(
                 onPressed: () {
