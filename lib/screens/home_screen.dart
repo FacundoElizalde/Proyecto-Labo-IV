@@ -60,10 +60,9 @@ class HomeScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20), // Espacio entre el título y el buscador
+              SizedBox(height: 20),
               Container(
-                width: MediaQuery.of(context).size.width *
-                    0.75, // Ancho del contenedor (75% del ancho de la pantalla)
+                width: MediaQuery.of(context).size.width * 0.75,
                 child: TextField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
@@ -75,10 +74,9 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 20), // Espacio entre el buscador y el botón
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  // Muestra el indicador de carga circular
                   showDialog(
                     context: context,
                     barrierDismissible: false,
@@ -89,13 +87,10 @@ class HomeScreen extends StatelessWidget {
                     },
                   );
 
-                  // Obtener los datos de las películas
                   final moviesData = await fetchData();
 
-                  // Oculta el indicador de carga circular
                   Navigator.pop(context);
 
-                  // Navega a la lista de películas
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -113,7 +108,6 @@ class HomeScreen extends StatelessWidget {
   }
 
   Future<void> _searchMovies(BuildContext context, String searchTerm) async {
-    // Muestra el indicador de carga circular
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -198,6 +192,7 @@ class MoviesList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lista de Películas'),
+        backgroundColor: Colors.red[900],
       ),
       body: ListView.builder(
         itemCount: data['nombre_peliculas'].length,
@@ -253,6 +248,7 @@ class MovieDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('$movieTitle'),
+        backgroundColor: Colors.red[900],
       ),
       body: Center(
         child: Column(
@@ -326,7 +322,7 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Detalles de la Película'),
-        backgroundColor: Colors.red, // Color del app bar
+        backgroundColor: Colors.red[900], // Color del app bar
       ),
       body: _isLoading
           ? Center(

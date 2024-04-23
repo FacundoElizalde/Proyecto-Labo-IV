@@ -83,7 +83,8 @@ class _FormScreenState extends State<FormScreen> {
                   height: 30,
                 ),
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red[900]),
                   child: const SizedBox(
                       width: double.infinity,
                       height: 50,
