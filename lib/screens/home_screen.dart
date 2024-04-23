@@ -311,34 +311,68 @@ class _MovieInfoScreenState extends State<MovieInfoScreen> {
         title: Text('Detalles de la Película'),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
           : _movieData != null
               ? ListView(
+                  padding: EdgeInsets.all(16.0),
                   children: [
                     ListTile(
-                      title: Text('Title: ${_movieData!['Title']}'),
+                      title: Text(
+                        _movieData!['Title'],
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Año: ${_movieData!['Year']}'),
-                          Text('Sinopsis: ${_movieData!['Plot']}'),
-                          Text('Director(s): ${_movieData!['Director']}'),
-                          Text('Genero: ${_movieData!['Genre']}'),
-                          Text('Idioma: ${_movieData!['Language']}'),
-                          Text('Pais: ${_movieData!['Country']}'),
-                          Text('Premios: ${_movieData!['Awards']}'),
+                          _buildDetail('Año', _movieData!['Year']),
+                          _buildDetail('Sinopsis', _movieData!['Plot']),
+                          _buildDetail('Director(s)', _movieData!['Director']),
+                          _buildDetail('Género', _movieData!['Genre']),
+                          _buildDetail('Idioma', _movieData!['Language']),
+                          _buildDetail('País', _movieData!['Country']),
+                          _buildDetail('Premios', _movieData!['Awards']),
                         ],
                       ),
                     ),
                   ],
                 )
               : Center(
-                  child:
-                      Text('No se pudo cargar la información de la película'),
+                  child: Text(
+                    'No se pudo cargar la información de la película',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      color: Colors.red,
+                    ),
+                  ),
                 ),
-      // _isLoading ? ... : ... es un operador ternario que significa "si _isLoading es verdadero,
-      //  muestra el widget Center(child: CircularProgressIndicator()), de lo contrario, muestra
-      //  el widget ListView.
+    );
+  }
+
+  Widget _buildDetail(String title, String value) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 4.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$title:',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 16.0,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
