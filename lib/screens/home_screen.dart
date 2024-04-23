@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TOP Peliculas'),
+        title: const Text('TOP Películas'),
         centerTitle: true,
         backgroundColor: Colors.red[900],
         leading: Builder(
@@ -47,50 +47,67 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       drawer: DrawerMenu(),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Buscar película',
-                border: OutlineInputBorder(),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Encuentra tus películas favoritas',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              onSubmitted: (value) {
-                _searchMovies(context, value);
-              },
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              // Muestra el indicador de carga circular
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext context) {
-                  return Center(
-                    child: CircularProgressIndicator(),
+              SizedBox(height: 20), // Espacio entre el título y el buscador
+              Container(
+                width: MediaQuery.of(context).size.width *
+                    0.75, // Ancho del contenedor (75% del ancho de la pantalla)
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    labelText: 'Buscar película',
+                    border: OutlineInputBorder(),
+                  ),
+                  onSubmitted: (value) {
+                    _searchMovies(context, value);
+                  },
+                ),
+              ),
+              SizedBox(height: 20), // Espacio entre el buscador y el botón
+              ElevatedButton(
+                onPressed: () async {
+                  // Muestra el indicador de carga circular
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
+
+                  // Obtener los datos de las películas
+                  final moviesData = await fetchData();
+
+                  // Oculta el indicador de carga circular
+                  Navigator.pop(context);
+
+                  // Navega a la lista de películas
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MoviesList(data: moviesData),
+                    ),
                   );
                 },
-              );
-
-              // Obtener los datos de las películas
-              final moviesData = await fetchData();
-
-              // Oculta el indicador de carga circular
-              Navigator.pop(context);
-
-              // Navega a la lista de películas
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MoviesList(data: moviesData),
-                ),
-              );
-            },
-            child: const Text('Mostrar películas'),
+                child: const Text('Mostrar películas'),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
